@@ -6,7 +6,7 @@ This library provides support for payment gateway PayU by iBiBo Group. (See [Pay
 
 # Installation
 
-Copy the below files into their directory
+Copy the files into below mentioned directory
 
 	/skin/basic/customer/views/orders/components/payments/payu.tpl
 	/skin/basic/admin/views/payments/components/cc_processor/payu.tpl 
@@ -14,10 +14,16 @@ Copy the below files into their directory
 
 Run the below SQL Commands in your CS-Cart Database
 
+cscart_payment_processors table
+
 	INSERT INTO `cscart_payment_processors` (`processor_id`, `processor`, `processor_script`, `processor_template`, `admin_template`, `callback`, `type`) VALUES (82, 'PayU', 'PayU.php', 'cc_outside.tpl', 'payu.tpl', 'N', 'P');
-	
+
+cscart_payments table
+
 	INSERT INTO `cscart_payments` (`payment_id`, `usergroup_ids`, `position`, `status`, `template`, `processor_id`, `params`, `a_surcharge`, `p_surcharge`, `localization`) VALUES (12, '0', 0, 'A', 'cc_outside.tpl', 68, 'a:6:{s:7:"account";s:6:"C0Dr8m";s:4:"salt";s:8:"3sf0jURk";s:9:"item_name";s:4:"PayU";s:8:"currency";s:3:"USD";s:4:"mode";s:4:"test";s:12:"order_prefix";s:0:"";}', '0.000', '0.000', '');
-	
+
+cscart_payment_descriptions table
+
 	INSERT INTO `cscart_payment_descriptions` (`payment_id`, `payment`, `description`, `lang_code`) VALUES (12,'PayU Checkout','PayU','EN');
 
 You will get the PayU payment gateway options in the admin side

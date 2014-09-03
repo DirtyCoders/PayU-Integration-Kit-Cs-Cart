@@ -65,7 +65,8 @@ if (defined('PAYMENT_NOTIFICATION')) {
 				$pp_response['client_id'] = $txnRs['bank_ref_no'];
 			}
                         fn_finish_payment($_REQUEST['order_id'], $pp_response);
-                        fn_order_placement_routines($_REQUEST['order_id'], false);
+                        //fn_order_placement_routines($_REQUEST['order_id'], false);
+                        fn_order_placement_routines('route', $_REQUEST['order_id']);
 			
 		}
 		exit;
@@ -92,7 +93,8 @@ if (defined('PAYMENT_NOTIFICATION')) {
 			}
 		
 		fn_finish_payment($_REQUEST['order_id'], $pp_response, false);
-		fn_order_placement_routines($_REQUEST['order_id']);
+		//fn_order_placement_routines($_REQUEST['order_id']);
+                fn_order_placement_routines('route', $_REQUEST['order_id']);
 	
 	}
 
@@ -207,9 +209,9 @@ else {
 	<input type=hidden name="productinfo" value="{$posted['productinfo']}">
 	<input type=hidden name="amount" value="{$posted['amount']}">
 	
-	<input type=hidden name="surl" value="$current_location/$index_script?dispatch=payment_notification.return&payment=payu&order_id=$order_id">
-	<input type=hidden name="curl" value="$current_location/$index_script?dispatch=payment_notification.cancel&payment=payu&order_id=$order_id" />
-	<input type=hidden name="furl" value="$current_location/$index_script?dispatch=payment_notification.failure&payment=payu&order_id=$order_id">
+	<input type=hidden name="surl" value="$current_location/$index_script?dispatch=payment_notification.return&payment=PayU&order_id=$order_id">
+	<input type=hidden name="curl" value="$current_location/$index_script?dispatch=payment_notification.cancel&payment=PayU&order_id=$order_id" />
+	<input type=hidden name="furl" value="$current_location/$index_script?dispatch=payment_notification.failure&payment=PayU&order_id=$order_id">
 	
 EOT;
 
